@@ -1,35 +1,35 @@
 import { Box, useColorModeValue } from "@chakra-ui/react";
 import { Reorder } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import theme from "../theme";
 import { TodoItem } from "./TodoItem";
 import { TodoFooter } from "./TodoFooter";
 
-function Todo(props) {
-  const { todos, setTodos, toggleTodo, removeTodo } = props;
-
+function Todo() {
   const [filteredTodos, setFilteredTodos] = useState([]);
+  const todos = useSelector((state) => state.todos.todos);
 
-  const allTodos = () => {
-    setFilteredTodos(todos);
-  };
+  // const allTodos = () => {
+  //   setFilteredTodos(todos);
+  // };
 
-  const activeTodos = () => {
-    setFilteredTodos(todos.filter((todo) => todo.isCompleted === false));
-  };
+  // const activeTodos = () => {
+  //   setFilteredTodos(todos.filter((todo) => todo.isCompleted === false));
+  // };
 
-  const completedTodos = () => {
-    setFilteredTodos(todos.filter((todo) => todo.isCompleted === true));
-  };
+  // const completedTodos = () => {
+  //   setFilteredTodos(todos.filter((todo) => todo.isCompleted === true));
+  // };
 
-  const clearCompleted = () => {
-    setTodos(todos.filter((todo) => todo.isCompleted === false));
-  };
+  // const clearCompleted = () => {
+  //   setTodos(todos.filter((todo) => todo.isCompleted === false));
+  // };
 
-  useEffect(() => {
-    setFilteredTodos(todos);
-  }, [todos]);
+  // useEffect(() => {
+  //   setFilteredTodos(todos);
+  // }, [todos]);
 
   return (
     <Box
@@ -42,30 +42,31 @@ function Todo(props) {
       <Reorder.Group
         axis="y"
         values={todos}
-        onReorder={setTodos}
+        onReorder={todos}
+        // onReorder={setTodos}
         style={{ listStyle: "none", overflow: "hidden" }}
         layoutScroll
       >
-        {filteredTodos?.map((todo) => {
+        {todos?.map((todo) => {
           return (
             <Reorder.Item key={todo.id} value={todo}>
               <TodoItem
                 key={todo.id}
                 item={todo}
-                todo={todo}
-                toggleTodo={toggleTodo}
-                removeTodo={removeTodo}
+                id={todo.id}
+                text={todo.text}
+                isCompleted={todo.isCompleted}
               />
             </Reorder.Item>
           );
         })}
       </Reorder.Group>
       <TodoFooter
-        todos={filteredTodos}
-        allTodos={allTodos}
-        activeTodos={activeTodos}
-        completedTodos={completedTodos}
-        clearCompleted={clearCompleted}
+        todos={todos}
+        // allTodos={allTodos}
+        // activeTodos={activeTodos}
+        // completedTodos={completedTodos}
+        // clearCompleted={clearCompleted}
       />
     </Box>
   );

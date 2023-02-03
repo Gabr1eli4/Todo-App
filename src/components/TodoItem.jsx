@@ -1,15 +1,18 @@
 import { Text, Grid, Divider, Box, useColorModeValue } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 
-import theme from "../theme";
+import { useDispatch } from "react-redux";
+import { removeTodo, toggleTodo } from "../store/todoSlice";
 
 function TodoItem(props) {
-  const { todo, toggleTodo, removeTodo } = props;
+  const { id, text, isCompleted } = props;
+  const dispatch = useDispatch();
+
   return (
     <>
       <Box borderTopRadius={10} py={3} px={4}>
         <Grid gridTemplateColumns="30px 1fr 30px" alignItems="center">
-          {todo.isCompleted ? (
+          {isCompleted ? (
             <Box
               bg={"linear-gradient(#57ddff, #c058f3)"}
               borderRadius="50%"
@@ -18,7 +21,7 @@ function TodoItem(props) {
               display="flex"
               justifyContent="center"
               alignItems="center"
-              onClick={() => toggleTodo(todo.id)}
+              onClick={() => dispatch(toggleTodo({ id }))}
             >
               <CheckIcon
                 fontSize={12}
@@ -31,7 +34,7 @@ function TodoItem(props) {
               w={6}
               h={6}
               borderRadius="50%"
-              onClick={() => toggleTodo(todo.id)}
+              onClick={() => dispatch(toggleTodo({ id }))}
             />
           )}
           <Text
@@ -40,9 +43,9 @@ function TodoItem(props) {
             margin="auto 0"
             fontSize={["12px", "14px", "16px"]}
           >
-            {todo.text}
+            {text}
           </Text>
-          <CloseIcon onClick={() => removeTodo(todo.id)} />
+          <CloseIcon onClick={() => dispatch(removeTodo({ id }))} />
         </Grid>
       </Box>
       <Divider />
