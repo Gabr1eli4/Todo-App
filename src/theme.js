@@ -99,8 +99,8 @@ const font = {
 const bg = {
   darkMobile: "./todo-app-main/images/bg-mobile-dark.jpg",
   lightMobile: "../todo-app-main/images/bg-mobile-light.jpg",
-  darkDesktop: "../src/images/bg-desktop-dark.jpg",
-  lightDesktop: "../src/images/bg-desktop-light.jpg",
+  darkDesktop: "./src/images/bg-desktop-dark.jpg",
+  lightDesktop: "./src/images/bg-desktop-light.jpg",
 };
 
 const theme = extendTheme({
