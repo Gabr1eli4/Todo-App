@@ -1,7 +1,7 @@
 import { Box, useColorModeValue } from "@chakra-ui/react";
-import { Reorder } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { AnimatePresence } from "framer-motion";
 
 import theme from "../theme";
 import { TodoItem } from "./TodoItem";
@@ -15,7 +15,7 @@ function Todo() {
 
 	const filteredTodo = () => {
 		if (filter === filters.COMPLETED) {
-			return todos.filter((todo) => todo.isComplted);
+			return todos.filter((todo) => todo.isCompleted);
 		}
 		if (filter === filters.NOT_COMPLETED) {
 			return todos.filter((todo) => !todo.isCompleted);
@@ -25,7 +25,6 @@ function Todo() {
 
 	useEffect(() => {
 		setFilteredTodos(() => filteredTodo());
-		console.log(filteredTodos);
 	}, [todos, filter]);
 
 	return (
@@ -36,26 +35,18 @@ function Todo() {
 			)}
 			borderRadius={10}
 		>
-			<Reorder.Group
-				axis="y"
-				values={filteredTodos}
-				onReorder={setFilteredTodos}
-				style={{ listStyle: "none", overflow: "hidden" }}
-				layoutScroll
-			>
-				{filteredTodos?.map((todo) => {
+			<AnimatePresence>
+				{filteredTodos.map((todo) => {
 					return (
-						<Reorder.Item key={todo.id} value={todo}>
-							<TodoItem
-								key={todo.id}
-								id={todo.id}
-								text={todo.text}
-								isCompleted={todo.isCompleted}
-							/>
-						</Reorder.Item>
+						<TodoItem
+							key={todo.id}
+							id={todo.id}
+							text={todo.text}
+							isCompleted={todo.isCompleted}
+						/>
 					);
 				})}
-			</Reorder.Group>
+			</AnimatePresence>
 			<TodoFooter todos={todos} />
 		</Box>
 	);

@@ -10,6 +10,10 @@ export function TodoFooter(props) {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const dispatch = useDispatch();
 
+	const handleActive = (value) => {
+		return activeIndex === value ? true : false;
+	};
+
 	return (
 		<Box py={3} px={5}>
 			<Grid
@@ -37,7 +41,7 @@ export function TodoFooter(props) {
 				<Flex gridArea="buttons" justifyContent="center">
 					<Button
 						fontSize={["12px", "14px", "16px"]}
-						isActive={activeIndex === 0 ? true : false}
+						isActive={() => handleActive(0)}
 						onClick={() => {
 							dispatch(filterBy(filters.ALL));
 							setActiveIndex(0);
@@ -47,7 +51,7 @@ export function TodoFooter(props) {
 					</Button>
 					<Button
 						fontSize={["12px", "14px", "16px"]}
-						isActive={activeIndex === 1 ? true : false}
+						isActive={() => handleActive(1)}
 						onClick={() => {
 							dispatch(filterBy(filters.NOT_COMPLETED));
 							setActiveIndex(1);
@@ -57,7 +61,7 @@ export function TodoFooter(props) {
 					</Button>
 					<Button
 						fontSize={["12px", "14px", "16px"]}
-						isActive={activeIndex === 2 ? true : false}
+						isActive={() => handleActive(2)}
 						onClick={() => {
 							dispatch(filterBy(filters.COMPLETED));
 							setActiveIndex(2);
