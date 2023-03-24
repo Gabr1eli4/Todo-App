@@ -5,7 +5,7 @@ import { defineStyle } from "@chakra-ui/react";
 const styles = {
 	global: (props) => ({
 		body: {
-			bg: mode("#fafafa", "#161722")(props),
+			bg: mode("#d2d3db", "#161722")(props),
 			fontFamily: "'Josefin Sans', sans-serif",
 			color: mode("#484b6a", "#cacde8")(props),
 			fontWeight: "bold",
