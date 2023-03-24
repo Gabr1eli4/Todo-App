@@ -98,7 +98,7 @@ const font = {
 
 const bg = {
 	darkDesktop: "images/bg-desktop-dark.jpg",
-	lightDesktop: "images/bg-desktop-dark.jpg",
+	lightDesktop: "images/bg-desktop-light.jpg",
 };
 
 const theme = extendTheme({
