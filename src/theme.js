@@ -97,8 +97,8 @@ const font = {
 };
 
 const bg = {
-	darkDesktop: "todo-app/images/bg-desktop-dark.jpg",
-	lightDesktop: "todo-app/images/bg-desktop-dark.jpg",
+	darkDesktop: "images/bg-desktop-dark.jpg",
+	lightDesktop: "images/bg-desktop-dark.jpg",
 };
 
 const theme = extendTheme({
