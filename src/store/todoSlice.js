@@ -22,28 +22,37 @@ const todoSlice = createSlice({
 		},
 
 		removeTodo(state, action) {
-			state.todos.filter((todo) => todo.id !== action.payload.id);
+			state.todos = state.todos.filter(
+				(todo) => todo.id !== action.payload.id
+			);
 		},
 
 		toggleTodo(state, action) {
 			const toggledTodo = state.todos.find(
 				(todo) => todo.id === action.payload.id
 			);
-			toggledTodo.isCompleted = !toggleTodo.isCompleted;
+			toggledTodo.isCompleted = !toggledTodo.isCompleted;
 		},
 
 		filterBy(state, action) {
-			console.log(action.payload);
 			state.filterBy = action.payload;
 		},
 
 		clearCompleted(state, action) {
-			state.todos.filter((todo) => todo.isCompleted === action.payload);
+			state.todos = state.todos.filter(
+				(todo) => todo.isCompleted === action.payload
+			);
 		},
 	},
 });
 
-export const { addTodo, removeTodo, toggleTodo, filterBy, clearCompleted } =
-	todoSlice.actions;
+export const {
+	addTodo,
+	removeTodo,
+	toggleTodo,
+	filterBy,
+	clearCompleted,
+	reorder,
+} = todoSlice.actions;
 
 export default todoSlice.reducer;
